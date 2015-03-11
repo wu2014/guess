@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Lesson 7</title>
+    <link rel="stylesheet" type="text/css" href="lesson7.css">
+    <script type="text/javascript">
+        function validateFirstName() {
+            var firstName = document.getElementById("firstname").value ;
+            var regex = /^[a-zA-Z\ ]{2,15}$/;
+            if (regex.test(firstName)) { //true - validates
+                document.getElementById("firstnameprompt").innerHTML = "First name";
+                return true;
+            } else { //false - not valid input
+                document.getElementById("firstnameprompt").innerHTML = "Incorrect! First name must be between 2 and 15 characters";
+                return false;
+            }
+        } // end function validateFirstName()
+
+        function validateLastName() {
+            var lastName = document.getElementById("lastname").value ;
+            var regex = /^[a-zA-Z\ ]{2,25}$/;
+            if (regex.test(lastName)) { //true - validates
+                document.getElementById("lastnameprompt").innerHTML = "Last name";
+                return true;
+            } else { //false - not valid input
+                document.getElementById("lastnameprompt").innerHTML = "Incorrect! Last name must be between 2 and 25 characters";
+                return false;
+            }
+        } // end function validateLastName()
+
+
+        function validatePhone() {
+            var phoneNumber = document.getElementById("phonenumber").value ;
+            var regex = /^\(\d{3}\)\d{3}-\d{4}$/;
+            if (regex.test(phoneNumber)) { //true - validates
+                document.getElementById("phoneprompt").innerHTML = "Phone number (xxx)xxx-xxxx";
+                return true;
+            } else { //false - not valid input
+                document.getElementById("phoneprompt").innerHTML = "Incorrect! Phone numbers must be in (xxx)xxx-xxxx format";
+                return false;
+            }
+        } // end function validatePhone()
+
+        function validateQuantity() {
+            var quantity = document.getElementById("quantity").value ;
+            var regex = /^\d{1,2}$/;
+            if (regex.test(quantity) && (quantity > 0) && (quantity < 100)) { //true - validates
+                document.getElementById("quantityprompt").innerHTML = "Widget order quantity - max. order 99";
+                return true;
+            } else { //false - not valid input
+                document.getElementById("quantityprompt").innerHTML = "Incorrect! Order quantity can only be from 1 to 99";
+                return false;
+            }
+        } // end function validateQuantity() 
+
+        function calcOrder() {
+            if (validateFirstName() && validateLastName() && validatePhone() && validateQuantity()) {
+                const TAXRATE = 0.085;
+                var firstName = document.getElementById("firstname").value ;
+                var lastName = document.getElementById("lastname").value ;
+                var phoneNumber = document.getElementById("phonenumber").value ;
+                var quantity = document.getElementById("quantity").value ;
+                var cost = document.getElementById("cost").value ;
+                var discount;
+                if (quantity < 10) discount = 0;
+                else if (quantity < 20) discount = 0.1;
+                else if (quantity < 30) discount = 0.2;
+                else if (quantity < 40) discount = 0.3;
+                else discount = 0.4;
+                var extendedCost = quantity * cost * (1 - discount);
+                var taxAmount = extendedCost * TAXRATE;
+                var orderCost = extendedCost + taxAmount;
+                var greeting = "<p>Hello " + firstName + lastName + ", your phone number is " + phoneNumber + ".</p>" + "<p>You ordered " + quantity + " Widgets, and your discount is " + discount * 100 + "%.</p>The totals are $" + orderCost.toFixed(2) + ", including tax amount $" + taxAmount.toFixed(2) + ".";
+                document.getElementById("output").innerHTML = greeting;
+            } else {
+                alert ("Please correct your input!");
+            }
+        } // end function calcOrder()
+    </script>
+    </head>
+
+    <body>
+        <h1>Widgets Order</h1>
+        <form action="" method="post" enctype="multipart/form-data" name="widgetsOrder">
+            <p><input name="firstname" id="firstname" type="text" size="20" maxlength="15" onblur="validateFirstName();">&nbsp;-&nbsp;<span id="firstnameprompt">First name</span></p>
+            <p><input name="lastname" id="lastname" type="text" size="20" maxlength="25" onblur="validateLastName();">&nbsp;-&nbsp;<span id="lastnameprompt">Last name</span></p>
+            <p><input name="phonenumber" id="phonenumber" type="text" size="20" maxlength="20" onblur="validatePhone();">&nbsp;-&nbsp;<span id="phoneprompt">Phone number (xxx)xxx-xxxx</span></p>
+            <p><input name="quantity" id="quantity" type="text" size="20" maxlength="3" onblur="validateQuantity();">&nbsp;-&nbsp;<span id="quantityprompt">Widget order quantity - max. order 99</span></p>
+            <p><input name="cost" id="cost" type="text" value="4.95" size="20" readonly="readonly">&nbsp;-&nbsp;Widget cost</p>
+            <p><span class="button" style="background-color: #DAA520;" onclick="calcOrder();">Process Order</span></p>
+            <div><p id="output"></p></div>
+        </form>
+    </body>
+</html>
