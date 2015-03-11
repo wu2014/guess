@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Guess</title>
+    <script type="text/javascript">
+        function guessNumber() {
+            var answer = document.getElementById("numberInput").value;  
+            var tries = 1;
+            var topRange = 999;
+            var bottomRange = 1;
+            var loopOutput = "";
+            while (tries <= 10) {
+                // valid numberInput from 1 to 999
+                if (answer < 1 || answer > 999 || isNotInteger(answer)) {
+                    alert("The input is not valid, I will not make any guess attempts. Please enter a whole number from 1 to 999!"); 
+                    break;
+                }
+                var guess = bottomRange + ~~((topRange - bottomRange) / 2);
+               
+                // guessed the right number
+                if (guess == answer) {   
+                    alert("Guess #" + tries + ": your guess is " + guess + ".\n" + "Correct!"); 
+                    loopOutput += "Guess #" + tries + ": your guess is " + guess + "." + "<br>" + "Correct!" + "<br>";
+                    break;
+                // guess is less than the number
+                } else if (guess < answer) {  
+                    alert("Guess #" + tries + ": your guess is " + guess + ".\n" + "Too small! Please try again!"); 
+                    loopOutput += "Guess #" + tries + ": your guess is " + guess + "." + "<br>" + "Too small!" + "<br>";
+                    bottomRange = guess;
+                // guess is greater than the number
+                } else {  
+                    alert("Guess #" + tries + ": your guess is " + guess + ".\n" + "Too big! Please try again!");   
+                    loopOutput += "Guess #" + tries + ": your guess is " + guess + "." + "<br>" + "Too big!" + "<br>";
+                    topRange = guess;
+                }
+                tries++;
+            } // end while loop
+            // check who is the winner 
+            if (tries > 10)  alert("I lose! You Win!");
+            if (tries <= 10 && tries != 1) alert("I Win!")
+            // output to the user 
+            document.getElementById("guessOutput").innerHTML = "<p>" + loopOutput + "</p>";
+        } // end function guessNumber()
+
+        // create a function to check whether a number is a integer
+        function isNotInteger(x) {
+            return x % 1 != 0;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Guess a number</h1>
+    <form name="guessform" action="" method="POST">
+        <div>Enter a whole number between 1 and 999:<input name="numberInput" id="numberInput" type="number" size="20"></div>
+        <p><span style="background-color: #DAA520;" onclick="guessNumber();">Guess</span><p/>
+    </form>
+    <div id="guessOutput"></div>     
+</body>
+</html>
