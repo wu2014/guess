@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Lesson 9</title>
+    <style type="text/css">
+        .button {
+            padding: 5px 10px 5px 10px;
+            background-color: #DAA520;
+        }
+
+        #event1Output, #event2Output, #event3Output {
+            border: 1px dashed red;
+            width: 620px;
+            font-size: small;   
+        }
+
+        .firstP {
+            font-style: italic;
+        }
+    </style>
+    <script>
+        function validateDate() {
+            var date = document.getElementById("dateinput").value ;
+            var regex = /^\d{2}\/\d{2}\/\d{4}$/; // regular expressions for mm/dd/yyyy format
+            if (regex.test(date)) { //true - validates
+                document.getElementById("dateinputprompt").innerHTML = "Please input a date";
+                return true;
+            } else { //false - not valid input
+                document.getElementById("dateinputprompt").innerHTML = "Incorrect! Date must be in mm/dd/yyyy format";
+                return false;
+            }
+        } // end function validateDate()
+
+        function processDate() {
+            if (validateDate()) {
+                var dateInput = new Date(document.getElementById("dateinput").value); // create date object
+                var now = new Date(); // current date
+                var oneDay = 24*60*60*1000; // one day in ms
+                var diffDays = Math.round(Math.abs((dateInput.getTime() - now.getTime())/(oneDay))); 
+                var output = "<p>Your input date is " + document.getElementById("dateinput").value + ", current date is " + (now.getMonth() + 1) + "/" + now.getDate() + "/" + now.getFullYear() + " and the number of days between the two dates is " + diffDays + " days.</p>";
+                document.getElementById("event1Output").innerHTML = output;
+            } else {
+                alert ("Please correct your input! Date must be in mm/dd/yyyy format.");
+            }
+        } // end function processDate()
+
+        function processNumber() {
+            var numberInput = document.getElementById("numberinput").value;
+            var number = Math.round((Math.random() * (numberInput - 10) + 10));
+            var output = "<p>The random whole number is " + number + ".</p>";
+            document.getElementById("event2Output").innerHTML = output;    
+        } // end function processNumber()
+
+        function processText() {
+            var textInput1 = document.getElementById("text1").value;
+            var textInput2 = document.getElementById("text2").value;
+            var number = textInput2.indexOf(textInput1) // The postion of text1 in text2
+            var output;
+            if (number == -1) {
+                output = "<p>The first input is: " + textInput1 + ", and the second input is: " + textInput2 + ". The input from field one is not a substring of the input from field two." + "</p>";             
+            } else {
+                output = "<p>The first input is: " + textInput1 + ", and the second input is: " + textInput2 + ". The input from field one is a substring of the input from field two." + "</p>"; 
+            }
+            document.getElementById("event3Output").innerHTML = output;    
+        } // end function processText()
+    </script>    
+</head>
+         
+<body>
+    <h2>Event 1</h2>
+    <p>
+        <input name="dateinput" id="dateinput" type="text" size="20" maxlength="15" onblur="validateDate();">&nbsp;-&nbsp;<span id="dateinputprompt">Please input a date</span>
+    </p>
+    <p>
+        <span class="button" onclick="processDate();">Process Date</span> 
+    </p>
+    <div id="event1Output">
+        <p class="firstP">This space is reserved for event1 output information.</p>
+    </div>
+
+    <h2>Event 2</h2>
+    <p>
+        <input name="numberinput" id="numberinput" type="text" size="20" maxlength="15">&nbsp;-&nbsp;Please input a number from 10 to 99
+    </p>
+    <p>
+        <span class="button" onclick="processNumber();">Process Number</span> 
+    </p>
+    <div id="event2Output">
+        <p class="firstP">This space is reserved for event2 output information.</p>
+    </div>
+
+    <h2>Event 3</h2>
+    <p>
+        <input name="text1" id="text1" type="text" size="20" maxlength="15">&nbsp;-&nbsp;First input <br>
+        <input name="text2" id="text2" type="text" size="20" maxlength="15">&nbsp;-&nbsp;Second input 
+    </p>
+    <p>
+        <span class="button" onclick="processText();">Process Text</span> 
+    </p>
+    <div id="event3Output">
+        <p class="firstP">This space is reserved for event3 output information.</p>   
+    </div>       
+</body>
+</html>
