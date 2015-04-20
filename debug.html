@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Lesson 10</title>
+    <script type="text/javascript" src="debug.js"></script>
+    <style type="text/css">
+        span {
+            padding: 5px 10px 5px 10px;
+            background-color: #00FFFF;
+        }
+
+        #eventOutput {
+            border: 1px solid red;
+            width: 620px;
+            font-size: small;
+            color: blue;
+            background-color: #FFFF99;
+        }
+
+        #firstP {
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Lesson 10 homework</h1>
+    <img id="img1" src="zero.gif">
+    <img id="img2" src="zero.gif">
+    <form action="" method="post" enctype="multipart/form-data" name="userdata">
+        <input name="userInput1" id="userInput1" type="text" size="10">&nbsp;-&nbsp;text box for left image
+        <input name="userInput2" id="userInput2" type="text" size="10">&nbsp;-&nbsp;text box for right 
+        image  
+    </form>
+    <p>Please enter a number from 1 to 5 in either text input, then clicking on the corresponding image</p>
+    <p>
+        <span id="debugOnOff">Debug on/off</span>
+    </p>     
+    <div id="eventOutput">
+        <p id="firstP">This space is reserved for event output information</p>
+    </div>
+</body>
+</html>
