@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Timer</title>
+        <script type="text/javascript" src="timer.js"></script> 
+        <style type="text/css">
+            span {
+                padding: 5px 10px 5px 10px;
+                background-color: #00FFFF;
+            }
+
+            #eventOutput {
+                border: 1px solid red;
+                width: 620px;
+                font-size: small;
+                color: blue;
+                background-color: #FFFF99;
+            }
+
+            #firstP {
+                font-style: italic;
+            }
+
+            #output {
+                width: 120px;
+                height: 25px;
+                background-color: #CCC;
+                border:1px solid #999;
+            }
+        </style>
+    </head>
+        
+    <body>
+        <p id="output"></p>
+        <div id="controls">
+        	<button id="startStop">Start</button>
+            <button id="reset">Reset</button>
+            <button id="chooseTimer">Stopwatch</button>
+        </div>
+        <p>
+            <span id="debugOnOff">Debug on/off</span>
+        </p>     
+        <div id="eventOutput">
+            <p id="firstP">This space is reserved for event output information</p>
+        </div>   
+    </body>     
+</html>   
