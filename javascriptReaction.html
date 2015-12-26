@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="javascriptReaction.js"></script>
+    <title>Test</title>
+    <!-- Bootstrap CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <!-- My CSS -->
+    <link href="styleReaction.css" rel="stylesheet"> 
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="testDescription col-md-6 col-md-offset-3">
+          <h1>Measure your reaction time!</h1>
+          <p>When a box or circle appears, click as quickly as you can. To start test, click "<span>Start</span>" button; To stop and check your level, click "<span>Stop</span>" button.</p>
+          <p>Your time of this reaction: <span id="timeThis">0</span> sec</p>
+          <p>Total reactions: <span id="totalReactions">0</span> times</p>
+          <p>Your average time of all reactions: <span id="timeAve">0</span> sec</p>
+          <button type="submit" name="start" id="start" class="btn btn-default btn-lg">Start</button>
+          <button type="submit" name="stop" id="stop" class="btn btn-default btn-lg">Stop</button>
+        </div>
+      </div>  
+      <div class="row">  
+        <div class="col-md-8 col-md-offset-2">
+          <div id="results"></div>
+        </div>
+      </div>
+      <div class="row">  
+        <div id="box">I </br>am </br> Here</div>
+      </div>
+    </div>  
+  </body>
+</html>
